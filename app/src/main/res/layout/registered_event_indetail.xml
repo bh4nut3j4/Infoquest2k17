@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registered_event_indetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="in.errorlabs.infoquest2k17.Activities.Registered_Event_Indetail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:id="@+id/lay2"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="10dp"
+                    android:id="@+id/lay2_c1"
+                    app:cardUseCompatPadding="true">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Event Name"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:gravity="center"
+                            android:id="@+id/event__name"/>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/teamid"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="20dp"
+                            android:textStyle="bold"
+                            android:inputType="number"
+                            android:layout_below="@+id/event__name"
+                            android:hint="Enter Your Team ID Given By The IQ'17 Coordinator"
+                            android:textSize="12sp"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/teamid"
+                            android:text="Submit"
+
+                            android:id="@+id/submit"
+                            android:layout_centerHorizontal="true" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lay2_c1"
+                app:cardElevation="10dp"
+                android:id="@+id/lay2_c2"
+                app:cardUseCompatPadding="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:id="@+id/desctext"
+                    android:textColor="#ff0000"
+                    android:text="1) Team ID will be given by the IQ'17 Coordinators at the payment section after the leader of the team makes the payment.\n\n 2) All the team members must enter the same team id to join the team.\n\n 3) You can attend the event only after all your team members joins the team by entering the team id given during the payment. "/>
+
+            </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lay1"
+        android:visibility="visible">
+
+    <TextView
+        android:text="QR CODE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView5" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/r1"
+        app:cardElevation="10dp"
+        android:id="@+id/c2"
+        app:cardUseCompatPadding="true">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:text="Certificate Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:textStyle="bold"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="11dp" />
+
+            <TextView
+                android:text="Payback Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView9"
+                android:layout_marginBottom="9dp"
+                android:textStyle="bold"
+                android:layout_above="@+id/textView11"
+                android:layout_alignLeft="@+id/textView11"
+                android:layout_alignStart="@+id/textView11" />
+
+            <TextView
+                android:text="Attended Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8"
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"
+                android:layout_above="@+id/textView9"
+                android:layout_alignLeft="@+id/textView9"
+                android:layout_alignStart="@+id/textView9" />
+
+            <TextView
+                android:text="Paid Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textStyle="bold"
+                android:layout_marginBottom="9dp"
+                android:layout_above="@+id/textView8"
+                android:layout_alignLeft="@+id/textView8"
+                android:layout_alignStart="@+id/textView8" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/tick_green"
+                android:id="@+id/green1"
+                android:visibility="invisible"
+                android:layout_alignBottom="@+id/textView6"
+                android:layout_toLeftOf="@+id/textView6"
+                android:layout_toStartOf="@+id/textView6"
+                android:layout_marginRight="11dp"
+                android:layout_marginEnd="11dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/tick_green"
+                android:id="@+id/green_4"
+                android:visibility="invisible"
+                android:layout_alignBottom="@+id/textView11"
+                android:layout_alignLeft="@+id/green_2"
+                android:layout_alignStart="@+id/green_2" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/tick_green"
+                android:id="@+id/green_2"
+                android:visibility="invisible"
+                android:layout_alignBottom="@+id/textView8"
+                android:layout_alignLeft="@+id/green1"
+                android:layout_alignStart="@+id/green1" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/tick_green"
+                android:id="@+id/green_3"
+                android:visibility="invisible"
+                android:layout_alignBottom="@+id/textView9"
+                android:layout_alignLeft="@+id/green_2"
+                android:layout_alignStart="@+id/green_2" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/cross_red"
+                android:id="@+id/red_1"
+                android:visibility="visible"
+                android:layout_alignTop="@+id/green1"
+                android:layout_alignLeft="@+id/green1"
+                android:layout_alignStart="@+id/green1" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/cross_red"
+                android:id="@+id/red_2"
+                android:visibility="visible"
+                android:layout_alignTop="@+id/green_2"
+                android:layout_alignLeft="@+id/green_2"
+                android:layout_alignStart="@+id/green_2" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/cross_red"
+                android:id="@+id/red_3"
+                android:visibility="visible"
+                android:layout_alignTop="@+id/green_3"
+                android:layout_alignLeft="@+id/green_3"
+                android:layout_alignStart="@+id/green_3" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/cross_red"
+                android:id="@+id/red_4"
+                android:visibility="visible"
+                android:layout_alignTop="@+id/green_4"
+                android:layout_alignLeft="@+id/green_4"
+                android:layout_alignStart="@+id/green_4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Real Time status Updates"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/c2"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pd1"
+                android:textStyle="bold"
+                android:text="PAID STATUS-> Updates when you make payment for your registered event.\n"/>
+
+            <TextView
+                android:text="ATTENDED STATUS --> Updates when you attend the event after the payment.\n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pd1"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/textView14" />
+            <TextView
+                android:text="PAYBACK STATUS --> Updates If you are payed after the event(ONLY IF THE EVENT INVOLVES PRICE MONEY).\n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView14"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/textView15" />
+
+            <TextView
+                android:text="CERTIFICATE STATUS --> Updates after you receive your participation or merit certificate.(Certificates are issued only for selected events, Please contact your Event Co-ordinator to know more about the eligibility for certificate.)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView15"
+                android:layout_alignParentLeft="true"
+                android:textStyle="bold"
+                android:layout_alignParentStart="true"
+                android:id="@+id/textView16" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/r1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/c1"
+        android:foregroundGravity="center_horizontal"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:visibility="visible"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:foregroundGravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:id="@+id/qrcode_img"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+               />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+    </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
+</ScrollView>

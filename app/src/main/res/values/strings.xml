@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Infoquest2k17</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Strings related to login -->
+    <string name="action_sign_in_short">Sign in</string>
+
+    <string name="APPKEY">SW5mb3F1ZXN0MjAxN0FwcEtleQ==</string>
+    <string name="about_infoquest">Infoquest is a National Level Technical Symposium conducted by the Departments of Computer Science and Engineering &amp; Information Technology of J.B.I.E.T</string>
+    <string name="contributers">We thank the open source community for all their contributions.\n\n
+
+\t<a href="https://github.com/Error1337">Bhanu Teja</a>\n\n
+        \t<a href="https://www.facebook.com/rohit.dulam">Rohit Dulam</a>\n\n
+        \t<a href="https://www.facebook.com/sarthak.kammari/">Sarthak</a>\n\n
+        \t<a href="https://github.com/sri-ker/">Sriker Reddy</a>\n\n
+        \t<a href="https://www.facebook.com/profile.php?id=100001236403045/">Vamshi krishna</a>\n\n
+        \t<a href="https://www.facebook.com/anishreddyravula/">Anish Reddy</a>\n\n
+
+    </string>
+    <string name="licenses_text">\tThe MIT License (MIT)\n
+        \tCopyright (&#169;) 2016  copyright BhanuTeja\n\n
+       \t<a href="https://github.com/Error1337/android/blob/master/LICENSE.md">MIT License</a>\n\n
+        \t\nThe following are third party software/api that are used in Infoquest2k17 app.\n\n
+        \t<a href="https://github.com/amitshekhariitbhu/Fast-Android-Networking">Fast-Android-Networking</a>\n\n
+\t<a href="https://github.com/bumptech/glide">Glide</a>\n\n
+        \t<a href="https://github.com/OneSignal">One Signal</a>\n\n
+\t<a href="https://github.com/code-mc/loadtoast">Load Toast</a>\n\n
+    </string>
+    <string name="eventhold">"The Event is already registered and its STATUS IS ON HOLD, Please attend the event to register a new thread of this event again."</string>
+
+    <string name="title_activity_maps">Maps</string>
+    <string name="ppt_help">The Presentation of paper can be given by single participant or can be given as a team.\n\n
+    If you are the single person presenting inorder to submit your ABSTRACT you need to enter your PaperPresentation EventRegID which you ll receive after you register for PaperPresentation through our (Infoquest2k17) Android or IOS Apps.\n\n
+    If the presentation includes a team you need to enter EventRegID of both the participants which you ll receive after registering for paperpresentation Individually through or Apps and send the Abstract.
+    </string>
+
+    <string name="notsubmitted">You have registered for PaperPresentation but have not submitted your abstract yet.\n Submit your abstract to track the paper status.\n\n
+    If you have already submitted the abstract, it may take upto 12hours to get your paper status updated. \n\n Try again after few hours.</string>
+
+</resources>
