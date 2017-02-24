@@ -3,6 +3,8 @@ package in.errorlabs.infoquest2k17.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,13 +52,14 @@ public class Registered_Events_Single_Indetail extends AppCompatActivity {
     TextView lay2_eventname;
     EditText lay2_teamid;
     Button lay2_submit;
+    String eventname,event_reg_id,key,uname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registered_event_indetail);
         Bundle bundle = getIntent().getExtras();
-        final String eventname =bundle.getString("eventname");
-        final String event_reg_id =bundle.getString("event_reg_id");
+         eventname =bundle.getString("eventname");
+        event_reg_id =bundle.getString("event_reg_id");
         qrcode= (ImageView) findViewById(R.id.qrcode_img);
         g1= (ImageView) findViewById(R.id.green1);
         g2= (ImageView) findViewById(R.id.green_2);
@@ -84,8 +87,8 @@ public class Registered_Events_Single_Indetail extends AppCompatActivity {
         }else {
             Boolean checkinternet = (connection.isInternet());
             if (checkinternet) {
-                    String key=sharedPrefs.getLogedInKey();
-                    String uname=sharedPrefs.getLogedInUserName();
+                     key=sharedPrefs.getLogedInKey();
+                     uname=sharedPrefs.getLogedInUserName();
                     getData(key,uname,eventname,event_reg_id);
             } else {
                 Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -94,6 +97,24 @@ public class Registered_Events_Single_Indetail extends AppCompatActivity {
             }
         }
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.registered_single_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.refresh) {
+            getData(key,uname,eventname,event_reg_id);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void getData(String key,String uname,String eventname,String event_reg_id) {
@@ -200,8 +221,14 @@ public class Registered_Events_Single_Indetail extends AppCompatActivity {
             }
         }
 
+    }
 
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),RegisteredEvents.class));
+        finish();
     }
 
 }

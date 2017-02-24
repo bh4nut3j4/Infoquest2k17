@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
@@ -61,6 +61,9 @@ public class RegisteredEvents extends AppCompatActivity {
         loadToast.setText("Loading...");
         connection=new Connection(getApplicationContext());
         sharedPrefs = new SharedPrefs(this);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         String LogedInauthkey= sharedPrefs.getLogedInKey();
         String LogedInemail= sharedPrefs.getEmail();
         String LogedInusername= sharedPrefs.getLogedInUserName();
@@ -127,10 +130,6 @@ public class RegisteredEvents extends AppCompatActivity {
 
             }
         }));
-
-
-
-
     }
 
     public void getData(String key,String uname,String email) {
@@ -142,42 +141,60 @@ public class RegisteredEvents extends AppCompatActivity {
                 . writeTimeout(120, TimeUnit.SECONDS)
                 .build();
 
-        AndroidNetworking.post(RegisteredEventConfig.new_event_url)
+        AndroidNetworking.post(RegisteredEventConfig.new_final_event_url)
                 .addBodyParameter(RegisteredEventConfig.event_authkey,key)
                 .addBodyParameter(RegisteredEventConfig.event_username,uname)
                 .addBodyParameter(RegisteredEventConfig.event_email,email)
                 .setOkHttpClient(okHttpClient)
                 .setPriority(Priority.MEDIUM)
                 .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
+                .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         loadToast.success();
                         parsedata(response);
+
                     }
                     @Override
                     public void onError(ANError anError) {
                         loadToast.error();
+                        Log.d("LOG","LOGG"+anError.toString());
                         Toast.makeText(getApplicationContext(),"Please check your internet connection",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),Home.class));
                     }
                 });
     }
 
-    public void parsedata(JSONArray array){
+    public void parsedata(JSONObject response){
 
-        int j = array.length();
-        for (int i=j-1 ;i>=0;i--) {
-            RegisteredEvent_F_Model model = new RegisteredEvent_F_Model();
-            JSONObject json;
+           //gisteredEvent_F_Model model = new RegisteredEvent_F_Model();
             try {
-                json = array.getJSONObject(i);
-                if(!json.has("AuthKeyError")){
-                            if(!json.has("ResultEmptyError")){
-                                model.setEventname(json.getString(RegisteredEventConfig.eventname));
-                                model.setEvent_reg_id(json.getString(RegisteredEventConfig.event_reg_id));
-                                model.setTeam_id(json.getString(RegisteredEventConfig.event_team_id));
-                                list.add(model);
+
+                if(!response.has("AuthKeyError")){
+                            if(!response.has("ResultEmptyError")){
+
+                                JSONArray singleevents = response.getJSONArray("SingleEvents");
+                                JSONObject json;
+                                for (int k=0;k<singleevents.length();k++) {
+                                    RegisteredEvent_F_Model model = new RegisteredEvent_F_Model();
+                                    json = singleevents.getJSONObject(k);
+                                    model.setEventname(json.getString(RegisteredEventConfig.eventname));
+                                    model.setEvent_reg_id(json.getString(RegisteredEventConfig.event_reg_id));
+                                    model.setTeam_id(json.getString(RegisteredEventConfig.event_team_id));
+                                    list.add(model);
+                                }
+
+                                JSONArray teamevents = response.getJSONArray("TeamEvents");
+                                JSONObject json2;
+                                for (int n=0;n<teamevents.length();n++) {
+                                    RegisteredEvent_F_Model model = new RegisteredEvent_F_Model();
+                                    json2 = teamevents.getJSONObject(n);
+                                    model.setEventname(json2.getString(RegisteredEventConfig.eventname));
+                                    model.setEvent_reg_id(json2.getString(RegisteredEventConfig.event_reg_id));
+                                    model.setTeam_id(json2.getString(RegisteredEventConfig.event_team_id));
+                                    list.add(model);
+                                }
+
                             }else {
                                 Toast.makeText(getApplicationContext(), "No Registrations Done Yet", Toast.LENGTH_SHORT).show();
                                 recyclerView.setVisibility(View.GONE);
@@ -193,14 +210,19 @@ public class RegisteredEvents extends AppCompatActivity {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Please try again after sometime", Toast.LENGTH_SHORT).show();
             }
-        }
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+
+
         adapter = new RegisteredEvent_F_Adapter(list,this);
         recyclerView.setAdapter(adapter);
 
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),Home.class));
+        finish();
     }
 
 }

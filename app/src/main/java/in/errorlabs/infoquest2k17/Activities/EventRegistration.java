@@ -416,7 +416,7 @@ public class EventRegistration extends AppCompatActivity {
                 . writeTimeout(120, TimeUnit.SECONDS)
                 .build();
 
-        AndroidNetworking.post(RegisteredEventConfig.neweventregistration)
+        AndroidNetworking.post(RegisteredEventConfig.newfinaleventregistration)
                 .addBodyParameter("AUTHKEY",key)
                 .addBodyParameter("UserName", uname)
                 .addBodyParameter("Email", sharedPrefs.getEmail())

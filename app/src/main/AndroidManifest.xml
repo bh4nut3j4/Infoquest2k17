@@ -137,8 +137,9 @@
             android:name=".Activities.Registered_Events_Single_Indetail"
             android:parentActivityName=".Activities.Home"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.TrackMypaper" />
-        <activity android:name=".Activities.Ppt_reg_ids"></activity>
+        <activity android:name=".Activities.TrackMypaper"
+            android:parentActivityName=".Activities.Home"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

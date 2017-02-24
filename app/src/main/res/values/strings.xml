@@ -12,7 +12,7 @@
     <string name="contributers">We thank the open source community for all their contributions.\n\n
 
         <b>Developer :</b>\n\n
-\t<a href="https://github.com/Error1337">Bhanu Teja</a>\n\n
+\t<a href="https://github.com/bh4nut3j4">Bhanu Teja</a>\n\n
         <b>Contributers :</b>\n\n
         \t<a href="https://www.facebook.com/rohit.dulam">Rohit Dulam</a>\n\n
         \t<a href="https://www.facebook.com/sarthak.kammari/">Sarthak</a>\n\n
@@ -33,10 +33,6 @@
     <string name="eventhold">"The Event is already registered and its STATUS IS ON HOLD, Please attend the event to register a new thread of this event again."</string>
 
     <string name="title_activity_maps">Maps</string>
-    <string name="ppt_help">The Presentation of paper can be given by single participant or can be given as a team.\n\n
-    If you are the single person presenting inorder to submit your ABSTRACT you need to enter your PaperPresentation EventRegID which you ll receive after you register for PaperPresentation through our (Infoquest2k17) Android or IOS Apps.\n\n
-    If the presentation includes a team you need to enter EventRegID of both the participants which you ll receive after registering for paperpresentation Individually through or Apps and send the Abstract.
-    </string>
 
     <string name="notsubmitted">You have registered for PaperPresentation but have not submitted your abstract yet.\n Submit your abstract to track the paper status.\n\n
     If you have already submitted the abstract, it may take upto 12hours to get your paper status updated. \n\n Try again after few hours.</string>

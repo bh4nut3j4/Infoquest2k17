@@ -99,6 +99,12 @@ public class Login extends AppCompatActivity {
 
         }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+    }
+
         private void attemptLogin() {
             String getemail = mEmailView.getText().toString();
             String getpassword = mPasswordView.getText().toString();
@@ -184,11 +190,8 @@ public class Login extends AppCompatActivity {
 
             return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
-        @Override
-        public void onBackPressed(){
-            super.onBackPressed();
-            finish();
-        }
+
+
 
 
     }

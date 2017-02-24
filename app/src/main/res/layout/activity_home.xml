@@ -14,33 +14,57 @@
         android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/nav_view1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer" >
 
-    <RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    </android.support.design.widget.NavigationView>
+
+
+   <!--      <LinearLayout
+         android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+         android:orientation="vertical"
+             android:layout_marginBottom="5dp"
+             android:layout_gravity="center"
+         android:gravity="bottom"
+         >
         <TextView
         android:id="@+id/errorlabs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+            android:textStyle="bold"
         android:text="Developed By ErrorLabs \n www.errorlabs.in"
         android:layout_gravity="bottom"
-        android:textColor="#000000"
+        android:textColor="#000000"/>
+    </LinearLayout>-->
 
-            android:layout_marginLeft="60dp"
-            android:layout_marginStart="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp" />
-    </RelativeLayout>
+
+
+    </LinearLayout>
+
+    </ScrollView>
 
     </android.support.design.widget.NavigationView>
 

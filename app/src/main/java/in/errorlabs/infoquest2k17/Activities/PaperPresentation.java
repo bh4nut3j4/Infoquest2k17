@@ -297,7 +297,7 @@ public class PaperPresentation extends AppCompatActivity {
                 . writeTimeout(120, TimeUnit.SECONDS)
                 .build();
 
-        AndroidNetworking.post(RegisteredEventConfig.neweventregistration)
+        AndroidNetworking.post(RegisteredEventConfig.newfinaleventregistration)
                 .addBodyParameter("AUTHKEY",key)
                 .addBodyParameter("UserName", uname)
                 .addBodyParameter("Email", sharedPrefs.getEmail())
@@ -310,7 +310,7 @@ public class PaperPresentation extends AppCompatActivity {
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
                         loadToast.success();
 
                         int j = response.length();

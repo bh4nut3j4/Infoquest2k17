@@ -11,12 +11,13 @@ public class RegisteredEventConfig {
     public static final String event_team_id="TeamID";
     public static final String event_url="https://jbgroup.org.in/sync/sync_mapp/iq_php/regevent_f_name.php";
     public static final String new_event_url="https://jbgroup.org.in/sync/sync_mapp/iq_php/new_registered_f_name.php";
-
+    public static final String new_final_event_url="https://jbgroup.org.in/sync/sync_mapp/iq_php/new_final_getall_registered_f_events.php";
     public static final String event_authkey="AUTHKEY";
     public static final String event_username="UserName";
     public static final String event_email="Email";
     public static final String eventregistration="https://jbgroup.org.in/sync/sync_mapp/iq_php/registerevent.php";
     public static final String neweventregistration="https://jbgroup.org.in/sync/sync_mapp/iq_php/new_register_event.php";
+    public static final String newfinaleventregistration="https://jbgroup.org.in/sync/sync_mapp/iq_php/new_final_register.php";
     public static final String Event_Qr_Url="QrUrl";
     public static final String Team_Event_Qr_Url="TeamQRUrl";
     public static final String event_paidstatus="PaidStatus";

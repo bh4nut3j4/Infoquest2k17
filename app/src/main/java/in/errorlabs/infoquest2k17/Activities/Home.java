@@ -60,18 +60,18 @@ public class Home extends AppCompatActivity
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.InAppAlert)
                 .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
                .init();
-        errorlabs= (TextView) findViewById(R.id.errorlabs);
+       // errorlabs= (TextView) findViewById(R.id.errorlabs);
         iq_site= (TextView) findViewById(R.id.iq_site_name);
          dialogBuilder= NiftyDialogBuilder.getInstance(this);
 
-        errorlabs.setOnClickListener(new View.OnClickListener() {
+     /*   errorlabs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                  Intent i1= new Intent(getApplicationContext(),ELWebView.class);
                 i1.putExtra("name","errorlabs");
                 startActivity(i1);
             }
-        });
+        });*/
         sharedPrefs = new SharedPrefs(this);
         if (sharedPrefs.getopened()==null){
             sharedPrefs.setopened();
@@ -214,9 +214,8 @@ public class Home extends AppCompatActivity
                     .setButton2Click(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sharedPrefs.clearprefs();
-                            startActivity(new Intent(getApplicationContext(),Login.class));
-                            finish();
+
+                            logout();
                         }
                     })
                     .show();
@@ -239,9 +238,13 @@ public class Home extends AppCompatActivity
             }
         }
 
-
-
         return super.onOptionsItemSelected(item);
+    }
+
+    public void logout(){
+        sharedPrefs.clearprefs();
+        startActivity(new Intent(getApplicationContext(),Login.class));
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -318,6 +321,12 @@ public class Home extends AppCompatActivity
                         }
                     })
                     .show();
+
+        }else if (id == R.id.errorlabs) {
+
+            Intent i1= new Intent(getApplicationContext(),ELWebView.class);
+            i1.putExtra("name","errorlabs");
+            startActivity(i1);
 
         }
 

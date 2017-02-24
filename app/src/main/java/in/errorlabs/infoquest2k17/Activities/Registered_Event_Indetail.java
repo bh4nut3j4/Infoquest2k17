@@ -3,6 +3,8 @@ package in.errorlabs.infoquest2k17.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,14 +48,15 @@ public class Registered_Event_Indetail extends AppCompatActivity {
     TextView lay2_eventname,desctext;
     EditText lay2_teamid;
     Button lay2_submit;
+    String eventname,event_reg_id,team_id,key,uname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registered_event_indetail);
         Bundle bundle = getIntent().getExtras();
-        final String eventname =bundle.getString("eventname");
-        final String event_reg_id =bundle.getString("event_reg_id");
-        final String team_id =bundle.getString("teamid");
+         eventname =bundle.getString("eventname");
+         event_reg_id =bundle.getString("event_reg_id");
+         team_id =bundle.getString("teamid");
         qrcode= (ImageView) findViewById(R.id.qrcode_img);
         g1= (ImageView) findViewById(R.id.green1);
         g2= (ImageView) findViewById(R.id.green_2);
@@ -71,7 +74,7 @@ public class Registered_Event_Indetail extends AppCompatActivity {
         progressBar= (ProgressBar) findViewById(R.id.progress);
         desctext= (TextView) findViewById(R.id.desctext);
         if (eventname.equals("PaperPresentation")){
-            desctext.setText("1) TeamID will be mailed to your Email ID after you submit your abstract. \n\n2) If you are a member of the team and have not submitted the abstract, then you can use the TeamID send to the partipant who has submitted the abstract. \n\n" +
+            desctext.setText("1) TeamID will be mailed to your Email ID after you submit your abstract. \n\n2) If you are a member of the team and have not submitted the abstract, then you can use the TeamID send to your partner who has submitted the abstract. \n\n" +
                     "3) Team can have maximum of 2 participants.\n\n " +
                     "4) For any queries call +918686632890 or mail us at- infoquest@jbiet.edu.in");
             lay2_teamid.setHint("Enter the Team ID");
@@ -96,8 +99,8 @@ public class Registered_Event_Indetail extends AppCompatActivity {
                 }else {
                     lay2.setVisibility(View.GONE);
                     lay1.setVisibility(View.VISIBLE);
-                    String key=sharedPrefs.getLogedInKey();
-                    String uname=sharedPrefs.getLogedInUserName();
+                    key=sharedPrefs.getLogedInKey();
+                    uname=sharedPrefs.getLogedInUserName();
                     getData(key,uname,eventname,event_reg_id,team_id);
                 }
 
@@ -123,6 +126,28 @@ public class Registered_Event_Indetail extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.registered_single_menu, menu);
+        MenuItem item = menu.findItem(R.id.refresh);
+
+        if (team_id.isEmpty() || team_id.length()<=0 || team_id.equals("NULL") || team_id.equals("")){
+            item.setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.refresh) {
+            getData(key,uname,eventname,event_reg_id,team_id);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void getTeamID(String key,String uname,String eventname,String event_reg_id,String teamid){
@@ -157,17 +182,25 @@ public class Registered_Event_Indetail extends AppCompatActivity {
                                     if (!json.has("InvalidTeamID")) {
                                         if (!json.has("MaxNotFoundError")) {
                                             if (!json.has("LimitExceededError")){
-                                                if (json.has("SuccessfullyAdded")){
+                                                if(!json.has("InsertionError")){
+                                                    if (json.has("SuccessfullyAdded")){
 
-                                                    Toast.makeText(getApplicationContext(), "Successfully Added To Team", Toast.LENGTH_LONG).show();
-                                                    startActivity(new Intent(getApplicationContext(),RegisteredEvents.class));
-                                                    finish();
+                                                        Toast.makeText(getApplicationContext(), "Successfully Added To Team", Toast.LENGTH_LONG).show();
+                                                        startActivity(new Intent(getApplicationContext(),RegisteredEvents.class));
+                                                        finish();
 
-                                                }else {
+                                                    }else {
+                                                        Toast.makeText(getApplicationContext(), "Falied, Try Again", Toast.LENGTH_LONG).show();
+                                                        startActivity(new Intent(getApplicationContext(),RegisteredEvents.class));
+                                                        finish();
+                                                    }
+
+                                                }else{
                                                     Toast.makeText(getApplicationContext(), "Falied, Try Again", Toast.LENGTH_LONG).show();
                                                     startActivity(new Intent(getApplicationContext(),RegisteredEvents.class));
                                                     finish();
                                                 }
+
 
                                             }else {
                                                 Toast.makeText(getApplicationContext(), "You have already reached the maximum members for this event", Toast.LENGTH_LONG).show();
@@ -305,9 +338,13 @@ public class Registered_Event_Indetail extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
 
-
-
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),RegisteredEvents.class));
+        finish();
     }
 
 }

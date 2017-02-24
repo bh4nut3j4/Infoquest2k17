@@ -38,19 +38,16 @@
             android:id="@+id/nav_licenses"
             android:icon="@drawable/license"
             android:title="Open Source Licenses" />
+
     </group>
 
- <!--   <item android:title="Communicate">
+    <item android:title="Designed &amp; Developed by :">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/errorlabs"
+                android:icon="@drawable/logo_black"
+                android:title="Error Labs" />
         </menu>
-    </item>-->
+    </item>
 
 </menu>
