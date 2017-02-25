@@ -12,7 +12,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/r1">
 
     <TextView
@@ -24,22 +28,43 @@
         android:gravity="center_horizontal"
         android:id="@+id/txt"/>
 
-    <Spinner
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:id="@+id/trackmypaper_recyclerview"
+            android:layout_below="@+id/txt">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nopaperstext"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/txt"
+            android:text="No Papers"/>
+
+   <!-- <Spinner
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/txt"
         android:layout_marginTop="30dp"
         android:backgroundTint="#000000"
         android:id="@+id/eventnamespinner">
-    </Spinner>
+    </Spinner>-->
+    </RelativeLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get My Status"
-        android:layout_marginTop="30dp"
-        android:id="@+id/getstatusbtn"
-        android:layout_below="@+id/eventnamespinner"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/r2"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/r1">
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +72,7 @@
         android:text="Submitted Status :"
         android:textStyle="bold"
         android:id="@+id/submittedstatustext"
-        android:layout_below="@+id/getstatusbtn"
+
         android:layout_marginTop="20dp"/>
 
         <TextView
@@ -58,7 +83,7 @@
             android:id="@+id/submitted"
             android:visibility="invisible"
             android:layout_toRightOf="@+id/submittedstatustext"
-            android:layout_below="@+id/getstatusbtn"
+
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:textColor="#4caf50"/>
@@ -71,7 +96,6 @@
             android:visibility="invisible"
             android:id="@+id/notsubmitted"
             android:layout_toRightOf="@+id/submittedstatustext"
-            android:layout_below="@+id/getstatusbtn"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:textColor="#ff0000"/>
@@ -148,12 +172,8 @@
 
 </RelativeLayout>
     
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/r2"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/r1">
 
-    </RelativeLayout>
+
+
+</RelativeLayout>
 </RelativeLayout>

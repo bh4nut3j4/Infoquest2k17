@@ -1,14 +1,17 @@
 package in.errorlabs.infoquest2k17.Activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -30,8 +33,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import in.errorlabs.infoquest2k17.Adapters.TrackMyPaper_Adapter;
 import in.errorlabs.infoquest2k17.Configs.SharedPrefs;
+import in.errorlabs.infoquest2k17.Models.TrackMyPaper_Model;
 import in.errorlabs.infoquest2k17.R;
+import in.errorlabs.infoquest2k17.Utils.Onitemtouchlistener;
 import okhttp3.OkHttpClient;
 
 public class TrackMypaper extends AppCompatActivity {
@@ -42,31 +48,36 @@ public class TrackMypaper extends AppCompatActivity {
     String username,eventname;
     SharedPrefs sharedPrefs;
     LoadToast loadToast;
-    List<String> list;
-    ArrayAdapter<String> eventadapter;
+    TrackMyPaper_Adapter adapter;
+    List<TrackMyPaper_Model> list;
     RelativeLayout r1;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView recyclerView;
+    Context context;
+    RelativeLayout r2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.track_mypaper);
-        eventspinner= (Spinner) findViewById(R.id.eventnamespinner);
+       // eventspinner= (Spinner) findViewById(R.id.eventnamespinner);
         submitted = (TextView) findViewById(R.id.submitted);
         notsubmitted = (TextView) findViewById(R.id.notsubmitted);
         verfied = (TextView) findViewById(R.id.verfied);
         notverified= (TextView) findViewById(R.id.notverified);
         remarks= (TextView) findViewById(R.id.remarks);
         allthebest= (TextView) findViewById(R.id.allthebeststatus);
-        getstatus= (Button) findViewById(R.id.getstatusbtn);
+      //  getstatus= (Button) findViewById(R.id.getstatusbtn);
         sharedPrefs=new SharedPrefs(this);
         loadToast = new LoadToast(this);
+        list = new ArrayList<>();
         r1= (RelativeLayout) findViewById(R.id.r1);
         r1.setVisibility(View.INVISIBLE);
-        list = new ArrayList();
-        list.add("Select Paper Title");
+        r2= (RelativeLayout) findViewById(R.id.r2);
         loadToast.setText("Loading...");
-        eventadapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item,list);
-       // eventadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        eventadapter.setDropDownViewResource(R.layout.spinner_dropdown);
+        recyclerView = (RecyclerView) findViewById(R.id.trackmypaper_recyclerview);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         if (sharedPrefs.getLogedInUserName()==null || sharedPrefs.getLogedInKey()==null || sharedPrefs.getEmail()==null){
             sharedPrefs.clearprefs();
             Toast.makeText(getApplicationContext(),"Please Login To Continue",Toast.LENGTH_SHORT).show();
@@ -77,11 +88,9 @@ public class TrackMypaper extends AppCompatActivity {
             username=sharedPrefs.getLogedInUserName();
             eventname = "PaperPresentation";
             geteventregids(authkey,username,eventname);
-
-
         }
 
-        getstatus.setOnClickListener(new View.OnClickListener() {
+       /* getstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -94,8 +103,26 @@ public class TrackMypaper extends AppCompatActivity {
                     getstatusupdate(id);
                 }
             }
-        });
+        });*/
 
+        recyclerView.addOnItemTouchListener(new Onitemtouchlistener(context, new Onitemtouchlistener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                TextView pptname = (TextView) view.findViewById(R.id.papername);
+                TextView e_id = (TextView) view.findViewById(R.id.event_reg_id);
+                String  pname = pptname.getText().toString();
+                String reg_id =e_id.getText().toString();
+
+                if (pname.isEmpty() || pname.equals("") || reg_id.isEmpty() || reg_id.equals("")){
+                    Toast.makeText(getApplicationContext(),"Invalid PPT",Toast.LENGTH_SHORT).show();
+                }else {
+                    r1.setVisibility(View.INVISIBLE);
+                    getstatusupdate(pname,reg_id);
+                }
+
+
+            }
+        }));
 
     }
 
@@ -120,6 +147,7 @@ public class TrackMypaper extends AppCompatActivity {
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        Log.d("LOG","LOGG"+response.toString());
                         loadToast.success();
                         parseeventid(response);
                     }
@@ -132,11 +160,11 @@ public class TrackMypaper extends AppCompatActivity {
                         finish();
                     }
                 });
-
     }
 
     private void parseeventid(JSONArray response) {
 
+        TrackMyPaper_Model model = new TrackMyPaper_Model();
         int j = response.length();
         for (int i=0;i<j;i++) {
             JSONObject json;
@@ -149,8 +177,13 @@ public class TrackMypaper extends AppCompatActivity {
 
                             if (!json.has("Contact")){
 
+                                recyclerView.setVisibility(View.VISIBLE);
                                 String event_reg_id= json.getString("PPT_Title");
-                                list.add(event_reg_id);
+                                String team_id= json.getString("TeamID");
+                                Log.d("LOG","LOGG"+event_reg_id+team_id);
+                                model.setPPT_Title(event_reg_id);
+                                model.setTeamID(team_id);
+                                list.add(model);
 
                             }else {
 
@@ -177,8 +210,6 @@ public class TrackMypaper extends AppCompatActivity {
                                 welcomeAlert.show();
                                 ((TextView) welcomeAlert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                             }
-
-
 
                         }else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(TrackMypaper.this);
@@ -225,11 +256,11 @@ public class TrackMypaper extends AppCompatActivity {
             }
         }
         r1.setVisibility(View.VISIBLE);
-        eventspinner.setAdapter(eventadapter);
-
+        adapter = new TrackMyPaper_Adapter(list,this);
+        recyclerView.setAdapter(adapter);
 }
 
-    private void getstatusupdate(String id) {
+    private void getstatusupdate(String pp_name,String regid) {
 
         loadToast.show();
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
@@ -240,7 +271,8 @@ public class TrackMypaper extends AppCompatActivity {
 
         AndroidNetworking.post("https://jbgroup.org.in/sync/sync_mapp/iq_php/new_get_ppt_status.php")
                 .addBodyParameter("AUTHKEY",sharedPrefs.getLogedInKey())
-                .addBodyParameter("PPT_Title",id)
+                .addBodyParameter("PPT_Title",pp_name)
+                .addBodyParameter("TeamID",regid)
                 .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(okHttpClient)
                 .build()
@@ -248,7 +280,7 @@ public class TrackMypaper extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         loadToast.success();
-
+                        r2.setVisibility(View.VISIBLE);
                         int j = response.length();
                         for (int i=0;i<j;i++) {
                             JSONObject json;

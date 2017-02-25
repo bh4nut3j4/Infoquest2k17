@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/c1"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team ID :"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_below="@+id/e_t1"
+                    android:id="@+id/e_t2"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paper Title :"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:id="@+id/e_t1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginStart="11dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/papername"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    android:text="PAPERNAME"
+                    android:textColor="#000"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginStart="11dp"
+                    android:layout_above="@+id/e_t2"
+                    android:layout_toRightOf="@+id/e_t1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/event_reg_id"
+                    android:text="event_reg_id"
+                    android:layout_alignBaseline="@+id/e_t2"
+                    android:layout_alignBottom="@+id/e_t2"
+                    android:layout_alignLeft="@+id/papername"
+                    android:layout_alignStart="@+id/papername" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
