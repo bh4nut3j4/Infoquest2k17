@@ -72,7 +72,7 @@
                     android:textStyle="bold"
                     android:textColor="#ff0000"
                     android:text="1) Abstract should be submitted on or before 15th March 2017 and must be according to IEEE format and norms.
-                    \n\n 2) The abstracts can be submitted along with the EventRegID.
+                    \n\n 2) The abstracts must be submitted along with the EventRegID.
                     \n\n 3) You can register by tapping the banner above.
                     \n\n *(The participant will receive his/her EventRegID after registering for PaperPresentation through our (INFOQUEST2K17) ANDROID or IOS Application.)"/>
                 </RelativeLayout>

@@ -156,10 +156,19 @@ public class ForgotPassword extends AppCompatActivity {
 
         return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
-    public void sendresetcode(String  appkey, final String mail){
+    public void sendresetcode(String  appkey, final String mail_id){
+
+       // Toast.makeText(getApplicationContext(),mail_id, Toast.LENGTH_SHORT).show();
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                . writeTimeout(120, TimeUnit.SECONDS)
+                .build();
+
         AndroidNetworking.post(ForgotPasswordConfig.ForgotpasswdUrl)
                 .addBodyParameter("APPKEY",appkey)
-                .addBodyParameter("Email", mail)
+                .addBodyParameter("Email",mail_id)
                 .setPriority(Priority.MEDIUM)
                 .setOkHttpClient(okHttpClient)
                 .build()
@@ -167,6 +176,7 @@ public class ForgotPassword extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                     loadToast.success();
+                       // Toast.makeText(getApplicationContext(), "fafas"+response.toString(), Toast.LENGTH_SHORT).show();
                         int j = response.length();
                         for (int i = 0; i < j; i++) {
                             JSONObject json;
@@ -179,7 +189,7 @@ public class ForgotPassword extends AppCompatActivity {
                                         if (!json.has("MailNotSentError")) {
 
                                             if (json.has("MailSent")) {
-                                                sharedPrefs.setResetEmail(mail);
+                                                sharedPrefs.setResetEmail(mail_id);
                                                 r1.setVisibility(View.GONE);
                                                 r2.setVisibility(View.VISIBLE);
 

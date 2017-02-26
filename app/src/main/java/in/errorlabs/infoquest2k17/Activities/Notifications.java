@@ -62,6 +62,7 @@ public class Notifications extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(),Home.class));
+            finish();
         }
 
         recyclerView.addOnItemTouchListener(new Onitemtouchlistener(context, new Onitemtouchlistener.OnItemClickListener() {

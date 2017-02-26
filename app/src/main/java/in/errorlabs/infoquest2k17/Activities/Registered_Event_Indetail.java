@@ -121,7 +121,7 @@ public class Registered_Event_Indetail extends AppCompatActivity {
                     String key=sharedPrefs.getLogedInKey();
                     String uname=sharedPrefs.getLogedInUserName();
                     String newteamid=eventname+id;
-                    Toast.makeText(getApplicationContext(), "id"+newteamid, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getApplicationContext(), "id"+newteamid, Toast.LENGTH_SHORT).show();
                     getTeamID(key,uname,eventname,event_reg_id,newteamid);
                 }
             }

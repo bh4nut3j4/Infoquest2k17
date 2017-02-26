@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +49,7 @@ public class RegisteredEvents extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     LoadToast loadToast;
     SharedPrefs sharedPrefs;
+    String LogedInauthkey,LogedInemail,LogedInusername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +64,9 @@ public class RegisteredEvents extends AppCompatActivity {
         loadToast.setText("Loading...");
         connection=new Connection(getApplicationContext());
         sharedPrefs = new SharedPrefs(this);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        String LogedInauthkey= sharedPrefs.getLogedInKey();
-        String LogedInemail= sharedPrefs.getEmail();
-        String LogedInusername= sharedPrefs.getLogedInUserName();
+         LogedInauthkey= sharedPrefs.getLogedInKey();
+         LogedInemail= sharedPrefs.getEmail();
+         LogedInusername= sharedPrefs.getLogedInUserName();
         if (LogedInauthkey==null || LogedInemail==null || LogedInusername==null){
             sharedPrefs.clearprefs();
             Toast.makeText(getApplicationContext(),"Please Login",Toast.LENGTH_SHORT).show();
@@ -127,10 +127,10 @@ public class RegisteredEvents extends AppCompatActivity {
                     expand.putExtra("teamid",team_id);
                     startActivity(expand);
                 }
-
             }
         }));
     }
+
 
     public void getData(String key,String uname,String email) {
 
@@ -211,7 +211,9 @@ public class RegisteredEvents extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please try again after sometime", Toast.LENGTH_SHORT).show();
             }
 
-
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         adapter = new RegisteredEvent_F_Adapter(list,this);
         recyclerView.setAdapter(adapter);
 
@@ -223,6 +225,24 @@ public class RegisteredEvents extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(getApplicationContext(),Home.class));
         finish();
+    }
+
+     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.registered_single_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.refresh) {
+            list.clear();
+            getData(LogedInauthkey,LogedInusername,LogedInemail);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

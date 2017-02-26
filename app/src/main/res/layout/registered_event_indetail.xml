@@ -290,7 +290,7 @@
                 android:layout_alignParentStart="true"
                 android:id="@+id/textView14" />
             <TextView
-                android:text="PAYBACK STATUS --> Updates If you are payed after the event(ONLY IF THE EVENT INVOLVES PRICE MONEY).\n"
+                android:text="PAYBACK STATUS --> Updates If you are paid after the event(ONLY IF THE EVENT INVOLVES PRICE MONEY).\n"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView14"

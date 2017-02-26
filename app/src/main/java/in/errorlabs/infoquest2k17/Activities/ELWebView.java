@@ -26,7 +26,7 @@ public class ELWebView extends Activity {
         Bundle bundle = getIntent().getExtras();
         String name =bundle.getString("name");
         if (name.equals("errorlabs")){
-             url = "http://errorlabs.in";
+             url = "https://errorlabs.in";
         }else if (name.equals("iqsite")){
              url = "http://infoquest2017.com";
         }else if (name.equals("ppt")){
@@ -38,6 +38,7 @@ public class ELWebView extends Activity {
         boolean checkinternet = connection.isInternet();
         if (checkinternet){
             lt.setText("Loading...");
+            Toast.makeText(getApplicationContext(),"www.errorlabs.in", Toast.LENGTH_SHORT).show();
             loadpage();
 
         }else {
