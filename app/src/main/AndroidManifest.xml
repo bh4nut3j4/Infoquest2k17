@@ -30,9 +30,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <meta-data
+        <!--<meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
-            android:value="DISABLE" />
+            android:value="DISABLE" />-->
 
         <activity
             android:name=".Activities.Splash"
@@ -140,6 +140,7 @@
         <activity android:name=".Activities.TrackMypaper"
             android:parentActivityName=".Activities.Home"
             android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

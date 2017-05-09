@@ -93,7 +93,5 @@ public class OtherEvents extends AppCompatActivity {
 
             }
         }));
-
-
     }
 }

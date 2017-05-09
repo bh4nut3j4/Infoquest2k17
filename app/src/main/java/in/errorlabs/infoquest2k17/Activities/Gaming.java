@@ -79,7 +79,5 @@ public class Gaming extends AppCompatActivity {
             }
         }));
 
-
-
     }
 }

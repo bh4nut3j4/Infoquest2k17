@@ -40,7 +40,7 @@ import in.errorlabs.infoquest2k17.Utils.Onitemtouchlistener;
 import static com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype.Fall;
 
 public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,OneSignal.NotificationOpenedHandler {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView errorlabs,iq_site;
     Home_Adapter adapter;
@@ -58,7 +58,7 @@ public class Home extends AppCompatActivity
         setSupportActionBar(toolbar);
        OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.InAppAlert)
-                .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
+                //.setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
                .init();
        // errorlabs= (TextView) findViewById(R.id.errorlabs);
         iq_site= (TextView) findViewById(R.id.iq_site_name);
@@ -92,11 +92,7 @@ public class Home extends AppCompatActivity
         arrayList.add(new Home_Model(R.drawable.otherevents));
         arrayList.add(new Home_Model(R.drawable.sponsors));
         arrayList.add(new Home_Model(R.drawable.teaminfoquest));
-        /*arrayList.add(new Home_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=vki67mtPb6h4EbrJ%2b9BtM5mWe5mkUvBTBnxxo9lW2ak%3d&docid=05bd04c61f773482b9007d29bb5e0647e&rev=1"));
-        arrayList.add(new Home_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=g%2frfDnhVTceJXTwDYqeNPXcEMzL5Abf1s%2fdGGqIYIz8%3d&docid=0cd682a6b1b1a479aba374b9af7c1b754&rev=1"));
-        arrayList.add(new Home_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=UeXt3YJ1yCvC6pGow0%2fgoLu63gx2LdY3Sy7mqKDNqBA%3d&docid=02015d39fd0634ee4abebf8710c5b621d&rev=1"));
-        arrayList.add(new Home_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=ttb6YHhHaUaE8IkeO%2fpyLfCQ6F7l6QN1%2fuUyaLnEWn8%3d&docid=0365c7d66afdc4dcc8dc6f07af45ebc2b&rev=1"));
-      */  adapter=new Home_Adapter(arrayList,this);
+         adapter=new Home_Adapter(arrayList,this);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -253,8 +249,6 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-
         if (id == R.id.nav_profile) {
             startActivity(new Intent(getApplicationContext(),Profile.class));
         } else if (id == R.id.nav_registeredevents) {
@@ -335,38 +329,7 @@ public class Home extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void notificationOpened(OSNotificationOpenResult result) {
-        OSNotificationAction.ActionType actionType = result.action.type;
-        JSONObject data = result.notification.payload.additionalData;
-        String customKey;
-Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_SHORT).show();
-        if (data != null) {
-            customKey = data.optString("customkey", null);
-            if (customKey != null)
-                Log.i("OneSignalExample", "customkey set with value: " + customKey);
-        }
 
-        if (actionType == OSNotificationAction.ActionType.ActionTaken)
-            Log.i("OneSignalExample", "Button pressed with id: " + result.action.actionID);
-
-
-        // The following can be used to open an Activity of your choice.
-        // Replace - getApplicationContext() - with any Android Context.
-         Intent intent = new Intent(getApplicationContext(), Team_IQ.class);
-         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-         startActivity(intent);
-
-        // Add the following to your AndroidManifest.xml to prevent the launching of your main Activity
-        //   if you are calling startActivity above.
-     /*
-        <application ...>
-          <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="DISABLE" />
-        </application>
-     /*
-
-      */
-    }
 
 
 
@@ -374,39 +337,27 @@ Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_SHORT).show(
         // This fires when a notification is opened by tapping on it.
         @Override
         public void notificationOpened(OSNotificationOpenResult result) {
-            /*OSNotificationAction.ActionType actionType = result.action.type;
+            OSNotificationAction.ActionType actionType = result.action.type;
             JSONObject data = result.notification.payload.additionalData;
-            String customKey;
-            String id =result.notification.payload.notificationID;
-            String title=result.notification.payload.title;
-            String small_icon=result.notification.payload.smallIcon;
-            String large_icon=result.notification.payload.largeIcon;
-            String launch_url=result.notification.payload.launchURL;
-            String description = result.notification.payload.body  ;
-            String image = result.notification.payload.bigPicture;
-            Toast.makeText(getApplicationContext(),id+title+small_icon+large_icon+launch_url+description+image,Toast.LENGTH_LONG).show();
-            if (data != null) {
-                customKey = data.optString("customkey", null);
-                if (customKey != null)
-                    Log.i("OneSignalExample", "customkey set with value: " + customKey);
-            }
 
             if (actionType == OSNotificationAction.ActionType.ActionTaken)
-                Log.i("OneSignalExample", "Button pressed with id: " + result.action.actionID);*/
+                Log.i("OneSignalExample", "Button pressed with id: " + result.action.actionID);
 
-            // The following can be used to open an Activity of your choice.
-            // Replace - getApplicationContext() - with any Android Context.
-            Intent intent = new Intent(getApplicationContext(),Notifications.class);
-           // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(context,Notifications.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
-            // Add the following to your AndroidManifest.xml to prevent the launching of your main Activity
-            //   if you are calling startActivity above.
-            /*
-        <application ...>
-          <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="DISABLE" />
-        </application>
-     */
+            if (data != null) {
+                Intent i1 = new Intent(context,Notifications.class);
+                i1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i1);
+            }else {
+                Intent i2 = new Intent(context,Notifications.class);
+                i2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i2);
+            }
+
+
         }
     }
 

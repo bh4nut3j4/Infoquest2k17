@@ -111,7 +111,6 @@ public class Team_IQ extends AppCompatActivity {
         adapter = new Team_IQ_Adapter(list,this);
         recyclerView.setAdapter(adapter);
 
-
     }
 
 }

@@ -211,14 +211,39 @@ public class EventRegistration extends AppCompatActivity {
                                 return false;
                             }
                         }).into(eventimg);
-                        eventdescription.setText(json.getString(EventDetailsConfig.EventDescription));
-                        eventrules.setText(json.getString(EventDetailsConfig.EventRules));
-                        cod1.setText(json.getString(EventDetailsConfig.EventCoordinator1));
-                        cod1_no.setText(json.getString(EventDetailsConfig.EventCoNumber1));
-                        cod2.setText(json.getString(EventDetailsConfig.EventCoordinator2));
-                        cod2_no.setText(json.getString(EventDetailsConfig.EventCoNumber2));
-                        price_per_head.setText(json.getString(EventDetailsConfig.EventPrice));
-                        no_of_participants.setText(json.getString(EventDetailsConfig.EventParticipantNo));
+                        String openstatus = json.getString("EventOpenStatus");
+                        if (openstatus.equals("1")){
+
+                            dialogBuilder
+                                    .withTitle("Registrations Closed")
+                                    .withMessage("Registrations for this event are closed.")
+                                    .withDialogColor("#455a64")
+                                    .withIcon(getResources().getDrawable(R.drawable.applogo))
+                                    .withDuration(500)
+                                    .withEffect(Fall)
+                                    .withButton1Text("Ok")
+                                    .isCancelableOnTouchOutside(false)
+                                    .setButton1Click(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            startActivity(new Intent(getApplicationContext(),Home.class));
+                                            finish();
+                                        }
+                                    })
+                                    .show();
+
+                        }else{
+
+                            eventdescription.setText(json.getString(EventDetailsConfig.EventDescription));
+                            eventrules.setText(json.getString(EventDetailsConfig.EventRules));
+                            cod1.setText(json.getString(EventDetailsConfig.EventCoordinator1));
+                            cod1_no.setText(json.getString(EventDetailsConfig.EventCoNumber1));
+                            cod2.setText(json.getString(EventDetailsConfig.EventCoordinator2));
+                            cod2_no.setText(json.getString(EventDetailsConfig.EventCoNumber2));
+                            price_per_head.setText(json.getString(EventDetailsConfig.EventPrice));
+                            no_of_participants.setText(json.getString(EventDetailsConfig.EventParticipantNo));
+                        }
+
 
                     } else {
                         Toast.makeText(getApplicationContext(), "No Event Details Found", Toast.LENGTH_SHORT).show();

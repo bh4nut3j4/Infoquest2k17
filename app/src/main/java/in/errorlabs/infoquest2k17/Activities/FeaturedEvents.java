@@ -55,7 +55,7 @@ public class FeaturedEvents extends AppCompatActivity {
         arrayList.add(new Featured_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=99RCikpPpE9Z7TunRy2xIlpLrdKPbYM7HtjU3akMbC4%3d&docid=0107a9234af674bce8ada7d085f75fc85&rev=1"));
         arrayList.add(new Featured_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=WyjX0pJiblz5eShZm9G3%2buhxwdECQs5z%2fZ7a6Xgsybo%3d&docid=094daac32927e49bbacb5a42c527d4265&rev=1"));
         arrayList.add(new Featured_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=XhWWmuQ8rvDRqW%2fKyq0Cky9AofzUVFTlVhrxsFQipnU%3d&docid=07f70d7bff6d14564b06c071e9c765741&rev=1"));
-        arrayList.add(new Featured_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=VRuX0KrddD0xBUtxlurxFBVQe0KTOLqLuJdM7%2f%2fxSd4%3d&docid=017f0243ef4dd4d9c9d9de03bcbb32329&rev=1"));
+        //arrayList.add(new Featured_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=VRuX0KrddD0xBUtxlurxFBVQe0KTOLqLuJdM7%2f%2fxSd4%3d&docid=017f0243ef4dd4d9c9d9de03bcbb32329&rev=1"));
         arrayList.add(new Featured_Model("https://jbiet-my.sharepoint.com/personal/acm_jbiet_edu_in/_layouts/15/guestaccess.aspx?guestaccesstoken=KVCF6M1OfI09mWNl58YGQqRiZxOyYuOL1yVulQrB5AM%3d&docid=07217da05dd594c0caddc4803c2483092&rev=1"));
         adapter=new Featured_Adapter(arrayList,this);
         layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -86,11 +86,11 @@ public class FeaturedEvents extends AppCompatActivity {
                         i3.putExtra("name","Code JAM");
                         startActivity(i3);
                         break;
-                    case 3:   Intent i4 = new Intent(getApplicationContext(),EventRegistration.class);
+                    /*case 3:   Intent i4 = new Intent(getApplicationContext(),EventRegistration.class);
                         i4.putExtra("name","Gears of Rampage");
                         startActivity(i4);
-                        break;
-                    case 4:   Intent i5 = new Intent(getApplicationContext(),Gaming.class);
+                        break;*/
+                    case 3:   Intent i5 = new Intent(getApplicationContext(),Gaming.class);
                         i5.putExtra("name","Gaming");
                         startActivity(i5);
                         break;

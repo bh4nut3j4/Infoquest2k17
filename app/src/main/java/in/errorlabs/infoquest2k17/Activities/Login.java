@@ -190,9 +190,5 @@ public class Login extends AppCompatActivity {
 
             return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
-
-
-
-
     }
 

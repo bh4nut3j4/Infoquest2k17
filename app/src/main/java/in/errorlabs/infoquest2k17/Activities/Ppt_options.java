@@ -179,8 +179,4 @@ public class Ppt_options extends AppCompatActivity {
             }
         });*/
     }
-
-
-
-
 }

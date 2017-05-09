@@ -149,12 +149,5 @@ public class Notifications extends AppCompatActivity {
         adapter = new NotificationsAdapter(list,this);
         recyclerView.setAdapter(adapter);
 
-
-
-
-
-
     }
-
-
 }

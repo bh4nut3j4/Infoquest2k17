@@ -111,8 +111,5 @@ public class Sponsors extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         adapter = new Sponsors_Adapter(list,this);
         recyclerView.setAdapter(adapter);
-
-
     }
-
 }
