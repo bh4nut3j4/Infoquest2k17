@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "in.errorlabs.infoquest2k17"
-        manifestPlaceholders = [onesignal_app_id               : "03afb560-e16d-4125-affa-a1b8a1c39cd0",
+        manifestPlaceholders = [onesignal_app_id               : "ONESIGNAL_APP_KEY",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 15
